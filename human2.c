@@ -16,7 +16,7 @@ int main(void)
 
     load_color_image(1, "back.ppm");
     copy_color_image(1, 2);
-    
+
     for (i = 1; i <= 200; i += 20)
     {
         // 連番のファイル名を生成（org00001.ppm～org00200.ppm）
@@ -40,8 +40,9 @@ int main(void)
                 if (check > 0)
                 {
                     for (col = 0; col < 3; col++)
-                    {
-                        image[2][x][y][col] = image[0][x][y][col];
+                    {   
+                        //image[2][x][y][col] = image[0][x][y][col];                                                                              //透明度を変えない場合
+                        image[2][x][y][col] = (image[1][x][y][col] * (200 - (i + 19)) / 20 + image[0][x][y][col] * (i + 19) / 20) / 10;         //透明度を変える場合
                     }
                 }
             }
